@@ -2,3 +2,14 @@
 .zuntight{background:radial-gradient(ellipse at center,#3c2c49,#171322)}.sneezer{width:175px;height:160px;transform-origin:bottom center}.zuntight h2{font-size:clamp(30px,5vw,56px);color:#dac8f4}.sneeze-puff{position:absolute;top:38%;left:60%;font-size:27px;color:#ddd2f1;opacity:0}.achoo .sneezer{animation:achoo .5s ease-out both}.achoo .sneeze-puff{animation:puff .7s ease-out both}@keyframes achoo{25%{transform:rotate(-12deg) translateY(-7px)}55%{transform:rotate(15deg) translateY(7px)}100%{transform:rotate(0)}}@keyframes puff{10%{opacity:1;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(75px,-20px) scale(1.6)}}
 @media(prefers-reduced-motion:reduce){.achoo .sneezer{animation:none}.achoo .sneeze-puff{animation:none}}
 @media(min-width:721px){.sidebar{height:100vh;position:sticky;top:0}.sidebar nav{overflow-y:auto;min-height:0;scrollbar-width:thin}.sidebar-bottom{flex-shrink:0;padding-top:20px}}
+/* Wax letters are made from individual drops that land and spread. */
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.havdalah-stage{position:relative;width:min(660px,96%);height:100%;display:grid;place-items:center;isolation:isolate}
+.havdalah-label{position:absolute;top:7%;left:0;right:0;font-size:9px!important;letter-spacing:2px!important}
+.wax-scene{width:100%;max-height:85%;overflow:visible}
+.havdalah-source{position:absolute;bottom:6%;left:10%;right:10%;margin:0!important;opacity:0;animation:wax-link-in 1.2s 9s ease both}
+.wax-flame{transform-origin:0 5px;filter:drop-shadow(0 0 9px #ffd27c);animation:wax-flicker 1.1s var(--flame-delay) ease-in-out infinite alternate}
+@keyframes wax-flicker{from{transform:scale(.94,1.05) rotate(-4deg)}to{transform:scale(1.06,.93) rotate(4deg)}}
+@keyframes wax-link-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.havdalah-stage{width:100%}.wax-scene{width:112%;max-width:none}.havdalah-label{font-size:7px!important;letter-spacing:1px!important;top:12%}.havdalah-source{font-size:8px!important;bottom:12%}}
+@media(prefers-reduced-motion:reduce){.wax-flame,.havdalah-source{animation:none}.havdalah-source{opacity:1}}

@@ -32,3 +32,7 @@ Commands play sound when clicked or submitted with Enter, unless the user has mu
 Command sounds, including MDY, Voch, and diagnostics, start immediately. The sneeze alone plays after 1.1 seconds, synchronized with the animated achoo. Scene durations leave time for both supplied clips to finish. A shared gain node controls volume for recordings and original effects. Muting, switching, skipping, clearing, Esc, Ctrl+C, and page departure stop active sources and invalidate pending decode callbacks so late audio cannot leak into a new scene. Missing files retain a visual fallback; non-vocal synthesized tones are available for the original commands. The sneeze has a silent visual fallback rather than an imitation.
 
 For future media integration, document the license evidence and timestamp range first. Respect official-player terms and retain attribution. Route playback, mute/volume and teardown through `js/media.js`. Update the manifest honestly; do not label a link `official_embed` until embedding is actually integrated and verified.
+
+## Link updates — November 15, 2026
+
+The morning scene links to [MDY Daf](https://mdydaf.com/). Shabbos includes an outbound [Spotify link to Joey Newcomb’s How Aw Ya Reb Yid!](https://open.spotify.com/track/24nzik8ZBcQltLkJAO0hBd), verified against Spotify’s track page. This adds a listening link; the supplied local recording is unchanged.

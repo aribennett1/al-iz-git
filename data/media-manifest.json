@@ -21,7 +21,9 @@
         "source_url": "https://tyh.org/song/good-shabbos/",
         "timestamp_notes": "Not verified; identify greeting before requesting excerpt rights."
       },
-      "playback_delay_ms": 0
+      "playback_delay_ms": 0,
+      "external_listening_url": "https://open.spotify.com/track/24nzik8ZBcQltLkJAO0hBd",
+      "external_listening_title": "How Aw Ya Reb Yid! — Joey Newcomb"
     },
     {
       "command_id": "shmak",
@@ -92,7 +94,8 @@
         "source_url": "https://www.supportmdy.com/",
         "timestamp_notes": "Unresolved. No specific recording or audible timestamp verified."
       },
-      "playback_delay_ms": 0
+      "playback_delay_ms": 0,
+      "external_listening_url": "https://mdydaf.com/"
     },
     {
       "command_id": "nacht",
@@ -120,7 +123,7 @@
       "permission_status": "Supplied by the user with explicit instructions to play; no independent license verification or outreach.",
       "local_asset_path": "media/voch.mp3",
       "authorized_embed_url": null,
-      "fallback_behavior": "Original visuals; synthesized non-vocal tones if loading fails.",
+      "fallback_behavior": "Braided candle burns down from its top without scaling. Individual falling wax drops land and spread into pooled GIT VOCH! letters; reduced motion shows the finished wax deposits. Synthesized tones if recording fails.",
       "research_candidate": {
         "title": "A Gutte Voch — Big Avoidas",
         "artist_or_speaker": "Joey Newcomb",

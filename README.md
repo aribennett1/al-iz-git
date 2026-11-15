@@ -24,7 +24,7 @@ Click a sidebar command or type it and press Enter. For a quick demo, try `git f
 | `git filter fish` | Gefilte fish | Original fish illustration and a deadpan punchline |
 | `git morgen` | Gut morgen | Sunrise interrupted by RABOISAI! AH!!! |
 | `git nacht` | Gut nacht | Moonrise and twinkling stars |
-| `git voch` | Gut voch | Braided Havdalah candle, then a greeting |
+| `git voch` | Gut voch | Candle burns down; falling wax drops pool into GIT VOCH! |
 | `git yomtov` | Gut Yom Tov | Festive lights and a holiday greeting |
 | `git gezunt` | Zei gezunt | ECG, scan, and neshama diagnostics |
 | `git-zuntight` | Gesundheit | A person sneezing into a tissue, with a real sneeze |
