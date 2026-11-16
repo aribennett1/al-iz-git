@@ -33,6 +33,24 @@ Click a sidebar command or type it and press Enter. For a quick demo, try `git f
 
 Use “Copy command link” to share a scene (`#git-filter-fish`, for example; older links still work). Sound plays when you click a command or press Enter, with a mute toggle and volume slider. Shared links open silently until you interact. Command sounds start immediately, except the sneeze, which plays after 1.1 seconds with the animated achoo. Switching commands or interrupting stops current and pending sound. Fish bubbles stop before the punchline. Reduced-motion users receive still scenes without canvas fireworks, shake, or motion. Audio is optional.
 
+## Bubby's kitchen
+
+Developers type real Git commands, so real Git commands get answered too. When input is not one of the ten commandments, Bubby takes it. Each is a full scene, and none of the ten changed.
+
+| Command | Bubby | Experience |
+| --- | --- | --- |
+| `git log` | Her call log | 47 missed calls, voicemails escalating, and a call you cannot decline |
+| `git diff` | Her kugel | Recipe diff (+schmaltz), then her kugel next to yours. "Yours is also nice." |
+| `git push` | Her table | Fourteen plates stack into a swaying tower. "Who's pushing?" |
+| `git push --force` | The airplane | A spoon flies loop-the-loops and dives at a closed mouth. Rejected. Retrying. |
+| `git merge` | The shadchan | Two branches, a mothers' merge conflict, a chuppah, a broken glass, MAZEL TOV |
+| `git blame` | Nobody is blaming | The family points at each other faster and faster, then everyone points at you |
+| `git bisect` | The investigation | Eight relatives bisected to find who took the rugelach. The author is not who you think. |
+| `git cherry-pick` | The fruit stand | She rejects cherries (bruised, attitude, too soft) and picks the one perfect one |
+| `git reset --hard` | Her soup | Your work cracks and falls away. Then soup. "Life is hard. Eat." |
+
+Arguments are fine: `git push origin main`, `git push -f`, `git reset --hard HEAD~1` and `git bisect start` all route to their scene. Bubby's scenes live in `js/bubby.js` (registry), `js/bubby-scenes.js` (character and scenes), `js/bubby-sounds.js` (sounds) and `css/bubby.css`, and follow the same rules as the ten: every timer through `later`, every sound through `Sound.stop()`, no user input rendered. All Bubby audio is synthesized at runtime, so there are no recordings or licenses to track.
+
 ## Deploy to GitHub Pages
 
 This repository includes a Pages Actions workflow that uploads only `index.html`, `css`, `js`, `data`, and `media`. All asset references are relative and work under `/al-iz-git/`.

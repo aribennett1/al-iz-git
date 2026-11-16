@@ -177,6 +177,105 @@
       "authorized_embed_url": null,
       "fallback_behavior": "Silent illustrated sneeze and ACHOO / GIT-ZUNTIGHT typography.",
       "playback_delay_ms": 1100
+    },
+    {
+      "command_id": "log",
+      "title": "Bubby's kitchen: synthesized effects (ring, buzz, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "diff",
+      "title": "Bubby's kitchen: synthesized effects (tick, ding, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "push",
+      "title": "Bubby's kitchen: synthesized effects (clink, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "push-force",
+      "title": "Bubby's kitchen: synthesized effects (airplane, clank, splat, tick, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "merge",
+      "title": "Bubby's kitchen: synthesized effects (buzz, tick, whoosh, shatter, original klezmer flourish, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "bisect",
+      "title": "Bubby's kitchen: synthesized effects (tick, good, buzz, doom, scratch, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "reset-hard",
+      "title": "Bubby's kitchen: synthesized effects (tick, crack, knock, warm, good, buzz, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "blame",
+      "title": "Bubby's kitchen: synthesized effects (buzz, tick, doom, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "cherry-pick",
+      "title": "Bubby's kitchen: synthesized effects (whoosh, buzz, ding, good, pop)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/bubby-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Bubby's kitchen scene sound effects.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
     }
   ]
 }
