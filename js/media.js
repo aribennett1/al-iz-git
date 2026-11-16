@@ -1,4 +1,5 @@
 // Local recordings and CC0 effects. See data/media-manifest.json for provenance.
+import {bubbyVoices} from './bubby-sounds.js';
 const recordings = {
  shabbos: {path:'media/shabbos.mp3',fallback:'gentle'},
  wake: {path:'media/mdy.mp3',fallback:'wake'},
@@ -47,7 +48,9 @@ export class Sound {
   }
   this.synthesize(kind);
  }
+ track(node,...parts){this.nodes.add(node);node.onended=()=>{this.nodes.delete(node);node.disconnect();parts.forEach(part=>part.disconnect());};}
  synthesize(kind){
+  if(bubbyVoices[kind]){bubbyVoices[kind](this.context,this.master,(node,...parts)=>this.track(node,...parts));return;}
   const patterns={celebrate:[523,659,784,1047],alarm:[220,185,220,185],bubble:[180,310,440],wake:[392,523,784],health:[659,880],gentle:[262,330,392],sleep:[392,330,262]};
   (patterns[kind]||[440]).forEach((frequency,i)=>{
    const oscillator=this.context.createOscillator(),gain=this.context.createGain();oscillator.type=kind==='bubble'?'sine':'triangle';oscillator.frequency.value=frequency;gain.gain.value=.12;oscillator.connect(gain);gain.connect(this.master);this.nodes.add(oscillator);
