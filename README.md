@@ -29,7 +29,9 @@ Click a sidebar command or type it and press Enter. For a quick demo, try `git f
 | `git gezunt` | Zei gezunt | ECG, scan, and neshama diagnostics |
 | `git-zuntight` | Gesundheit | A person sneezing into a tissue, with a real sneeze |
 
-`help` lists commands; `clear` clears output. ↑/↓ browse session history and preserve your unfinished draft. Tab completes a command or lists matches. Esc, Ctrl+C, and Skip stop animations. Commands ignore case and repeated whitespace. Unknown input is displayed safely as text, with matching suggestions when available.
+Shabbos is spelled many ways, so `git` followed by any of these runs `git shabbos` (same scene, sound, sidebar highlight and `#git-shabbos` link): shabos, shobbos, shobos, shabbes, shabes, shobbes, shobes, shabbas, shabas, shobbas, shobas, shabbus, shabus, shobbus, shobus, shabbis, shabis, shobbis, shobis, shabbat, shabat, shabbath, shabath, schabbos, schabos, schabbes, schabes, schabbat, schabat, sabbath, sabbat, sabat. These are an explicit `aliases` list in `js/commands.js`; Tab completion and suggestions match them but always show `git shabbos`.
+
+`help`, `git`, `git help`, `git --help` and `git -h` all list commands (the ten commandments and Bubby's kitchen); `clear` clears output. ↑/↓ browse session history and preserve your unfinished draft. Tab completes a command or lists matches. Esc, Ctrl+C, and Skip stop animations. Commands ignore case and repeated whitespace. Unknown input is displayed safely as text, with matching suggestions when available.
 
 Use “Copy command link” to share a scene (`#git-filter-fish`, for example; older links still work). Sound plays when you click a command or press Enter, with a mute toggle and volume slider. Shared links open silently until you interact. Command sounds start immediately, except the sneeze, which plays after 1.1 seconds with the animated achoo. Switching commands or interrupting stops current and pending sound. Fish bubbles stop before the punchline. Reduced-motion users receive still scenes without canvas fireworks, shake, or motion. Audio is optional.
 
