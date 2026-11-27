@@ -6,7 +6,7 @@
 // every scene when its duration ends, and the family is never done talking by
 // then. A new event still cancels whatever the family had pending, the same
 // way switching commands cancels a scene. Every node is built with
-// textContent, and nothing anyone types is executed.
+// textContent, and nothing anyone types is executed. The chat makes no sound.
 import {cast,group,seed,scripts,pools,renames} from './family-script.js';
 
 const LIMIT=80,LATE_GAP=8000,REPEAT_WINDOW=120000,SPAM_WINDOW=15000,SPAM_COUNT=4,LOCK_FOR=20000,AWAY=30000;
@@ -19,7 +19,7 @@ function prepare(messages,context){
  return messages.map(m=>{const copy={...m};for(const key of ['text','forward','system','flowers'])if(key in copy)copy[key]=resolve(copy[key],context);return copy;});
 }
 
-export function createFamilyChat({root,sound}){
+export function createFamilyChat({root}){
  if(!root)return {react(){},stop(){}};
  const wide=matchMedia('(min-width:1360px)');
  let collapsed=false;try{collapsed=localStorage.getItem('al-iz-git:family-collapsed')==='1';}catch{/* Private windows still get the chat. */}
@@ -27,7 +27,7 @@ export function createFamilyChat({root,sound}){
  let queue=[],busy=false,typingNode=null,timers=new Set(),generation=0;
  let last={event:null,at:0},sent=[],spammed=false,lateAt=0,hiddenAt=0;
  const once=new Set(),renamed=new Set();
- let idleTimers=[],unlockTimer=0,toastTimer=0,voiceTimers=[];
+ let idleTimers=[],unlockTimer=0,toastTimer=0;
 
  const members=`${Object.values(cast).slice(0,4).map(c=>c.name).join(', ')}, +${group.members-4}`;
  const footerText={open:'🔒 Reply in the terminal. Ma reads everything.',locked:'🔒 Only admins can send messages. Ma is the admin.'};
@@ -69,23 +69,24 @@ export function createFamilyChat({root,sound}){
  function later(fn,delay){const version=generation;const id=setTimeout(()=>{timers.delete(id);if(version===generation)fn();},delay);timers.add(id);}
  function cancel(){generation++;for(const id of timers)clearTimeout(id);timers.clear();queue=[];busy=false;hideTyping();}
 
- function voice(length){
-  const button=el('button','family-voice');button.type='button';button.setAttribute('aria-label',`Play voice message, ${length}`);
-  const play=el('span','family-play','▶');play.setAttribute('aria-hidden','true');
-  const wave=el('span','family-wave');wave.setAttribute('aria-hidden','true');
+ // A voice message nobody will play. Tapping it shows what Bubby said.
+ function voice(length,transcript){
+  const wrap=el('div','family-voice-wrap');
+  const button=el('button','family-voice');button.type='button';button.setAttribute('aria-expanded','false');
+  const row=el('span','family-voice-row'),mic=el('span','family-mic','🎤'),wave=el('span','family-wave');
+  mic.setAttribute('aria-hidden','true');wave.setAttribute('aria-hidden','true');
   for(let i=0;i<28;i++){const bar=el('i');bar.style.height=`${24+(i*37%11)*6+(i%3)*5}%`;wave.append(bar);}
-  const time=el('span','family-length',length);
-  button.append(play,wave,time);
-  button.addEventListener('click',()=>playVoice(button,time,length));
-  return button;
- }
- function resetVoices(){voiceTimers.forEach(clearTimeout);voiceTimers=[];for(const button of log.querySelectorAll('.family-voice.playing')){button.classList.remove('playing');button.querySelector('.family-length').textContent=button.dataset.length;}}
- // Three seconds of Bubby. The progress bar barely moves.
- function playVoice(button,time,length){
-  resetVoices();sound.prepare(null,true);sound.play('voicenote');
-  button.dataset.length=length;button.classList.add('playing');
-  for(let second=0;second<=3;second++)voiceTimers.push(setTimeout(()=>{time.textContent=`0:0${second} / ${length}`;},second*1000));
-  voiceTimers.push(setTimeout(resetVoices,3400));
+  const label=el('span','family-transcript-toggle','View transcript');
+  row.append(mic,wave,el('span','family-length',length));button.append(row,label);
+  const text=el('p','family-transcript',transcript);text.hidden=true;
+  button.setAttribute('aria-label',`Voice message, ${length}. View transcript`);
+  button.addEventListener('click',()=>{
+   text.hidden=!text.hidden;button.setAttribute('aria-expanded',String(!text.hidden));
+   label.textContent=text.hidden?'View transcript':'Hide transcript';
+   button.setAttribute('aria-label',`Voice message, ${length}. ${label.textContent}`);
+   if(!text.hidden)text.scrollIntoView({block:'nearest'});
+  });
+  wrap.append(button,text);return wrap;
  }
  function flowers({title:heading,line}){
   const card=el('div','family-flowers');card.setAttribute('role','img');card.setAttribute('aria-label',`A flower picture: ${heading}. ${line}`);
@@ -111,7 +112,7 @@ export function createFamilyChat({root,sound}){
   lastSender=m.from;
   let preview;
   if(m.forward){node.append(el('span','family-forwarded','↪ Forwarded many times'),el('p','family-text',m.forward));preview='↪ '+m.forward;}
-  else if(m.voice){node.append(voice(m.voice));preview=`🎤 Voice message (${m.voice})`;}
+  else if(m.voice){node.append(voice(m.voice,m.transcript));preview=`🎤 Voice message (${m.voice})`;}
   else if(m.call){node.append(el('p','family-call','📞 Missed voice call'));preview='📞 Missed voice call';}
   else if(m.deleted){node.append(el('p','family-deleted','🚫 This message was deleted'));preview='🚫 This message was deleted';}
   else if(m.flowers){node.append(flowers(m.flowers));preview='📷 Photo';}
@@ -172,7 +173,7 @@ export function createFamilyChat({root,sound}){
  function react(event,{say,...extra}={}){
   const script=scripts[event];if(!script)return;
   const now=Date.now(),interrupted=queue.length>0||!!typingNode,out=[];
-  cancel();resetVoices();
+  cancel();
   if(say){
    out.push({you:say.length>60?say.slice(0,59)+'…':say});
    if(interrupted&&now-lateAt>LATE_GAP){lateAt=now;out.push({from:'bubby',text:pick(pools.late)});}
@@ -205,7 +206,7 @@ export function createFamilyChat({root,sound}){
   if(hiddenAt&&Date.now()-hiddenAt>=AWAY)enqueue([pools.back].filter(allowed));
   hiddenAt=0;armIdle();
  });
- function stop(){cancel();resetVoices();idleTimers.forEach(clearTimeout);idleTimers=[];clearTimeout(unlockTimer);clearTimeout(toastTimer);}
+ function stop(){cancel();idleTimers.forEach(clearTimeout);idleTimers=[];clearTimeout(unlockTimer);clearTimeout(toastTimer);}
  window.addEventListener('pagehide',stop);
 
  // Yesterday's messages are already there when you arrive.

@@ -2,7 +2,7 @@
 // Message shapes:
 //   {from, text}        a text message
 //   {from, forward}     "↪ Forwarded many times"
-//   {from, voice}       a voice message, voice is its length ('7:42')
+//   {from, voice, transcript}  a voice message: its length ('7:42') and what was said
 //   {from, call:true}   a missed voice call
 //   {from, deleted:true}
 //   {from, flowers}     a "good morning" flower picture, flowers is {title, line}
@@ -73,7 +73,7 @@ export const scripts = {
   {from:'bubby',text:'Gut nacht everyone ❤️'},
   {from:'bubby',text:'Gut nacht'},
   {from:'bubby',text:'Did my gut nacht go through'},
-  {from:'bubby',voice:'2:15'},
+  {from:'bubby',voice:'2:15',transcript:'Gut nacht, kinderlach. Gut nacht. Did it go? It\'s still going. Shloimy, it\'s still going! Nu, gey shlofen already. A gutte nacht, a gezunte nacht. [2 minutes of Bubby looking for the button]'},
   {from:'ma',text:'Ma go to sleep'}
  ],
  voch:[
@@ -100,7 +100,7 @@ export const scripts = {
   {from:'bubby',text:'Zei gezunt! Wear a sweater'},
   {from:'ma',text:'ARE YOU SICK'},
   {from:'ma',text:'CALL ME'},
-  {from:'bubby',voice:'4:30'},
+  {from:'bubby',voice:'4:30',transcript:'Zei gezunt, mein kind! A gezunt in dein keppele. So you take a chicken. A whole chicken, not the cut-up one, the cut-up one is a waste of gelt. A meren, a petrushka, a little dill… [4 minutes of chicken soup] …and you call me when it\'s ready. Gott zol ophiten you should catch a cold again.'},
   {from:'shloimy',text:"Can someone type what Bubby said, I'm in shul"}
  ],
  log:[
@@ -126,7 +126,7 @@ export const scripts = {
   {from:'ma',text:'WHAT DID YOU PUSH'},
   {from:'ma',text:'WHO DID YOU PUSH'},
   {from:'shloimy',text:'Mazel tov!!!'},
-  {from:'bubby',voice:'7:42'},
+  {from:'bubby',voice:'7:42',transcript:'Hallo? Hallo? Is it on? Shloimy, is it on? Nu. Oy vey iz mir, mein kind, I heard somebody pushed. A broch! In my day we didn\'t push, we asked nicely. Did you eat something? You\'re getting so thin, kein ayin hara. Ess, mein kind, ess. Shloimy, how do I stop this? Shloimy! Gevalt. [7 minutes of the TV in the background]'},
   {from:'yanky',text:'lol'},
   {from:'faigy',text:'Is this the right group'},
   ...leftAndBack('Tante Faigy'),

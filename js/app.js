@@ -7,7 +7,7 @@ import {createFamilyChat} from './family.js';
 const $=s=>document.querySelector(s),input=$('#input'),history=$('#history'),scene=$('#scene'),sound=new Sound();
 let timers=new Set(),running=false,selected=null,entries=[],cursor=0,draft='',generation=0;
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
-const family=createFamilyChat({root:$('#family'),sound});
+const family=createFamilyChat({root:$('#family')});
 const commandButton=c=>`<button class="command" data-run="${c.name}" title="${c.meaning}"><span class="command-icon" aria-hidden="true">${c.icon}</span><span><span class="command-name">${c.name}</span><span class="command-description">${c.description}</span></span><span class="command-arrow">›</span></button>`;
 $('#commands').innerHTML=commands.map(commandButton).join('');$('#bubby').innerHTML=bubby.map(commandButton).join('');
 const everyCommand=[...commands,...bubby];

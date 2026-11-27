@@ -60,7 +60,7 @@ Everything you type also goes to the family group, "Mishpacha 🕯️🍷", and 
 | Who | How they text |
 | --- | --- |
 | Ma | ALL CAPS. CALL ME. Three missed calls in a row. |
-| Bubby | 7:42 voice messages, Mazel tov to anything, ❤️ on every message, including "Tante Faigy left" |
+| Bubby | 7:42 voice messages (tap for the transcript), Mazel tov to anything, ❤️ on every message, including "Tante Faigy left" |
 | Uncle Shloimy | Forwarded many times. Mazel tov!!! to bad news. |
 | Tante Faigy | "Is this the right group". Leaves the group. Bubby adds her back. |
 | Cousin Yanky | lol |
@@ -70,7 +70,7 @@ The group also notices you. Run a new command mid-reaction and Bubby answers the
 
 On screens 1360px and wider the chat is docked beside the terminal, and you can collapse it (remembered per browser). Narrower screens get a 💬 button with an unread count, and each message shows a short preview near the top of the page, so it never covers a scene. Phones get a bottom sheet.
 
-The chat keeps its own timers instead of the scene's `later`. A scene stops when its duration ends, and the family is never done talking by then. A new event still cancels anything the family had pending. Every message is built with `textContent`, and nothing typed is executed. Bubby's voice message is synthesized at runtime and stops through `Sound.stop()`. All of the copy lives in `js/family-script.js`.
+The chat keeps its own timers instead of the scene's `later`. A scene stops when its duration ends, and the family is never done talking by then. A new event still cancels anything the family had pending. Every message is built with `textContent`, and nothing typed is executed. The chat makes no sound: tapping one of Bubby's voice messages shows its transcript. All of the copy, transcripts included, lives in `js/family-script.js`.
 
 ## Deploy to GitHub Pages
 
@@ -90,7 +90,7 @@ Alternatively select “Deploy from a branch”, `main`, `/ (root)` in Pages set
 - `js/animations.js`: original scene illustrations, animations, fireworks.
 - `js/media.js`: local recordings, CC0 effects, Web Audio fallback tones, caching, volume, and cancellable sound playback.
 - `css/main.css`: responsive interface, scene styling, reduced-motion overrides.
-- `js/family.js`, `js/family-script.js`, `js/family-sounds.js`, `css/family.css`: the family group chat (engine, copy, voice message, styling).
+- `js/family.js`, `js/family-script.js`, `css/family.css`: the family group chat (engine, copy, styling).
 - `data/media-manifest.json`: structured media research and unresolved rights.
 
 Review a new command’s phonetic validity first: “git” must contribute to the word or expression. Add its registry entry, animation case, CSS, completion text, and manifest record. Use the supplied `later` callback for **every animation timer** so switching commands cancels pending work. Any new sound or media must stop through `Sound.stop()`. Keep user input in `textContent`. Never execute input, invoke Git, or use `eval`.
