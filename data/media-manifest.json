@@ -276,6 +276,17 @@
       "intended_usage": "Bubby's kitchen scene sound effects.",
       "status": "original_synthesized",
       "permission_status": "Original work under the repository MIT license."
+    },
+    {
+      "command_id": "family-chat",
+      "title": "Family group chat: Bubby's voice message (voicenote)",
+      "artist_or_speaker": "Original Web Audio synthesis in js/family-sounds.js",
+      "source_url": null,
+      "timestamp_range": null,
+      "timestamp_notes": "Generated at runtime; no audio file.",
+      "intended_usage": "Plays when a voice message in the family group chat is tapped.",
+      "status": "original_synthesized",
+      "permission_status": "Original work under the repository MIT license."
     }
   ]
 }
