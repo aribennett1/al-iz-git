@@ -1,0 +1,97 @@
+/* The family group chat. Docked beside the terminal on wide screens; a
+   floating button with message previews everywhere else. main.css is untouched. */
+.family{--chat-bg:#121219;--bubble:#1c1a25;--bubble-border:#27242f;--you:#3a2f56;--you-border:#4c3d70;--meta:#8a839a;font-size:13px}
+.family-panel{display:flex;flex-direction:column;min-height:0;background:var(--chat-bg)}
+.family-panel[hidden],.family-fab[hidden],.family-toast[hidden],.family-badge[hidden]{display:none}
+
+/* Docked: a third column next to main. */
+.family.docked:not(.collapsed){width:320px;flex-shrink:0;align-self:flex-start;position:sticky;top:0;height:100vh;border-left:1px solid var(--border)}
+.family.docked:not(.collapsed) .family-panel{height:100%}
+/* Not docked: a drawer from the right. */
+.family:not(.docked) .family-panel{position:fixed;z-index:30;top:0;right:0;bottom:0;width:min(360px,92vw);border-left:1px solid var(--border);box-shadow:-24px 0 60px #0009;animation:family-drawer .22s ease-out}
+
+.family-header{display:flex;align-items:center;gap:11px;padding:0 12px 0 16px;height:71px;flex-shrink:0;border-bottom:1px solid var(--border);background:#15151c}
+.family-avatar{width:38px;height:38px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:18px;background:linear-gradient(135deg,#3a2f56,#5b3c4f)}
+.family-titles{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.family-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.family-status{font-size:10.5px;color:var(--meta);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.family-status.typing{color:var(--purple)}
+.family-close{width:32px;height:32px;flex-shrink:0;border-radius:8px;font-size:20px;line-height:1;color:var(--muted)}
+.family-close:hover{background:#ffffff0d;color:var(--text)}
+
+.family-log{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:3px;padding:10px 12px 18px;background-color:var(--chat-bg);background-image:radial-gradient(#ffffff09 1px,transparent 1.6px);background-size:18px 18px;scrollbar-width:thin}
+.family-log:focus-visible{outline:2px solid var(--purple);outline-offset:-2px}
+.family-day{align-self:center;margin:12px 0 6px;padding:4px 10px;border-radius:6px;background:#1d1b26;color:#8d86a0;font-size:10px;letter-spacing:.6px;text-transform:uppercase}
+.family-system{position:relative;align-self:center;max-width:88%;margin:7px 0;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:#1a1922;color:#a49db4;font-size:11px;text-align:center;overflow-wrap:anywhere;animation:family-in .22s ease-out}
+
+.family-msg{position:relative;align-self:flex-start;max-width:84%;margin-top:7px;padding:6px 9px 5px;border:1px solid var(--bubble-border);border-radius:3px 12px 12px 12px;background:var(--bubble);line-height:1.42;animation:family-in .22s ease-out}
+.family-msg.family-cont{margin-top:0;border-radius:12px}
+.family-you{align-self:flex-end;border-color:var(--you-border);border-radius:12px 3px 12px 12px;background:var(--you)}
+.family-sender{display:block;margin-bottom:2px;color:var(--sender);font-size:11px;font-weight:600}
+.family-text{margin:0;color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere}
+.family-you .family-text{font:12px/1.45 monospace}
+.family-meta{display:block;margin-top:2px;color:var(--meta);font-size:9.5px;text-align:right}
+.family-ticks{margin-left:2px;letter-spacing:-3px;padding-right:3px}
+.family-ticks.read{color:#7db9ff}
+.family-forwarded{display:block;margin-bottom:2px;color:var(--meta);font-size:10.5px;font-style:italic}
+.family-call{margin:0;color:#f19191}
+.family-deleted{margin:0;color:var(--meta);font-style:italic}
+.family-heart{position:absolute;left:10px;bottom:-12px;padding:1px 5px;border:1px solid #302c3b;border-radius:10px;background:#24212e;font-size:10px;line-height:1.4;animation:family-pop .3s ease-out}
+.family-you .family-heart{left:auto;right:10px}
+.family-system .family-heart{left:calc(50% - 13px)}
+.hearted{margin-bottom:13px}
+
+.family-typing{align-self:flex-start;display:flex;gap:4px;margin-top:7px;padding:10px 12px;border:1px solid var(--bubble-border);border-radius:3px 12px 12px 12px;background:var(--bubble)}
+.family-typing i{width:6px;height:6px;border-radius:50%;background:var(--sender);opacity:.45;animation:family-dot 1s ease-in-out infinite}
+.family-typing i:nth-child(2){animation-delay:.15s}
+.family-typing i:nth-child(3){animation-delay:.3s}
+
+.family-voice{display:flex;flex-direction:column;align-items:stretch;gap:3px;width:220px;max-width:100%;padding:4px 0 0;text-align:left}
+.family-voice-row{display:flex;align-items:center;gap:8px}
+.family-mic{width:30px;height:30px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--sender) 22%,transparent);font-size:14px}
+.family-wave{flex:1;height:24px;display:flex;align-items:center;gap:2px}
+.family-wave i{flex:1;min-width:2px;border-radius:2px;background:#6c6580}
+.family-length{color:var(--meta);font-size:10px;white-space:nowrap}
+.family-transcript-toggle{padding-left:38px;color:var(--sender);font-size:10.5px;font-weight:600}
+.family-voice:hover .family-transcript-toggle{text-decoration:underline}
+.family-transcript{max-width:220px;margin:6px 0 0;padding:6px 0 1px 9px;border-left:2px solid var(--sender);color:#cfc9d9;font-size:12px;line-height:1.45;overflow-wrap:anywhere}
+.family-transcript[hidden]{display:none}
+
+/* An original "good morning" picture: pink gradient, flowers, gold glitter. */
+.family-flowers{position:relative;overflow:hidden;width:220px;max-width:100%;margin:2px 0;padding:15px 10px 13px;border-radius:8px;text-align:center;background:radial-gradient(circle at 25% 15%,#ffd6ea 0,transparent 55%),linear-gradient(160deg,#f6a3c5,#b685e6 58%,#6a4fc6)}
+.family-flowers-row{display:block;font-size:22px;letter-spacing:2px}
+.family-flowers-title{display:block;margin:8px 0 5px;font:800 22px/1.1 Georgia,serif;letter-spacing:.5px;background:linear-gradient(#fff8cf,#e6b24a 55%,#fff1b0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 #6e2f6e) drop-shadow(0 0 6px #fff3)}
+.family-flowers-line{display:block;color:#fff;font:italic 12px Georgia,serif;text-shadow:0 1px 2px #5b2a5b}
+.family-sparkle{position:absolute;color:#fff7d1;font-size:11px;animation:family-twinkle 1.3s ease-in-out infinite alternate}
+
+.family-footer{margin:0;flex-shrink:0;padding:12px 16px;border-top:1px solid var(--border);background:#15151c;color:var(--meta);font-size:10.5px}
+.family-footer.locked{color:var(--gold)}
+
+.family-fab{position:fixed;z-index:31;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;border:1px solid var(--you-border);border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#3a2f56,#272036);box-shadow:0 10px 30px #0009;font-size:22px}
+.family-badge{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#e0567b;color:#fff;font:700 11px/20px Inter,-apple-system,sans-serif}
+/* Previews drop in near the top, like a notification: below the sound controls, above the scene. */
+.family-toast{position:fixed;z-index:31;top:calc(84px + env(safe-area-inset-top));right:16px;max-width:min(320px,calc(100vw - 32px));padding:10px 14px;border:1px solid var(--you-border);border-radius:12px;background:#1d1a28;box-shadow:0 12px 34px #000a;color:var(--text);font-size:12px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.family-toast.pop{animation:family-toast .25s ease-out}
+
+@keyframes family-in{from{opacity:0;transform:translateY(6px)}}
+@keyframes family-pop{from{transform:scale(0)}60%{transform:scale(1.25)}}
+@keyframes family-dot{50%{opacity:1;transform:translateY(-3px)}}
+@keyframes family-twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.15)}}
+@keyframes family-toast{from{opacity:0;transform:translateY(-12px)}}
+@keyframes family-drawer{from{transform:translateX(30px);opacity:0}}
+
+/* Phones: a bottom sheet, and full-width previews. */
+@media(max-width:720px){
+ .family:not(.docked) .family-panel{top:auto;left:0;width:auto;height:75vh;height:75dvh;border-left:0;border-top:1px solid var(--border);border-radius:16px 16px 0 0;box-shadow:0 -24px 60px #000a;animation-name:family-sheet}
+ .family-header{height:62px;border-radius:16px 16px 0 0}
+ .family-toast{top:calc(10px + env(safe-area-inset-top));left:16px;right:16px;max-width:none}
+ /* The keyboard is up and the prompt sits at the bottom: get out of its way. */
+ body:has(#input:focus) .family-fab{display:none}
+}
+@keyframes family-sheet{from{transform:translateY(40px);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){
+ .family-msg,.family-system,.family-heart,.family-toast.pop,.family-panel{animation:none!important}
+ .family-typing i{animation:none!important;opacity:.85}
+ .family-sparkle{animation:none!important;opacity:.8}
+}

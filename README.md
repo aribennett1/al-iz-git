@@ -53,6 +53,25 @@ Developers type real Git commands, so real Git commands get answered too. When i
 
 Arguments are fine: `git push origin main`, `git push -f`, `git reset --hard HEAD~1` and `git bisect start` all route to their scene. Bubby's scenes live in `js/bubby.js` (registry), `js/bubby-scenes.js` (character and scenes), `js/bubby-sounds.js` (sounds) and `css/bubby.css`, and follow the same rules as the ten: every timer through `later`, every sound through `Sound.stop()`, no user input rendered. All Bubby audio is synthesized at runtime, so there are no recordings or licenses to track.
 
+## The family group chat
+
+Everything you type also goes to the family group, "Mishpacha 🕯️🍷", and the family has opinions. Each of the ten commandments and the nine Bubby commands gets its own reaction, and so do typos, `help`, `clear`, Ctrl+C, muting and copying a link.
+
+| Who | How they text |
+| --- | --- |
+| Ma | ALL CAPS. CALL ME. Three missed calls in a row. |
+| Bubby | 7:42 voice messages (tap for the transcript), Mazel tov to anything, ❤️ on every message, including "Tante Faigy left" |
+| Uncle Shloimy | Forwarded many times. Mazel tov!!! to bad news. |
+| Tante Faigy | "Is this the right group". Leaves the group. Bubby adds her back. |
+| Cousin Yanky | lol |
+| Zeidy | Does not type. 📞 Missed voice call. |
+
+The group also notices you. Run a new command mid-reaction and Bubby answers the last one late. Run the same command twice and Ma tells you. Send four commands in 15 seconds and Ma makes the group admins-only for 20 seconds. Go quiet and Uncle Shloimy forwards something, then Bubby sends a flower picture, then everyone checks you're ok. Leave the tab for 30 seconds and Ma notices when you're back. Between midnight and 5 AM, Ma asks why you're up. On Friday afternoons, who's bringing the kugel. The group gets renamed twice ("IMPORTANT ONLY", then "NO FORWARDS PLEASE"), and Shloimy forwards something right after each.
+
+On screens 1360px and wider the chat is docked beside the terminal, and you can collapse it (remembered per browser). Narrower screens get a 💬 button with an unread count, and each message shows a short preview near the top of the page, so it never covers a scene. Phones get a bottom sheet.
+
+The chat keeps its own timers instead of the scene's `later`. A scene stops when its duration ends, and the family is never done talking by then. A new event still cancels anything the family had pending. Every message is built with `textContent`, and nothing typed is executed. The chat makes no sound: tapping one of Bubby's voice messages shows its transcript. All of the copy, transcripts included, lives in `js/family-script.js`.
+
 ## Deploy to GitHub Pages
 
 This repository includes a Pages Actions workflow that uploads only `index.html`, `css`, `js`, `data`, and `media`. All asset references are relative and work under `/al-iz-git/`.
@@ -71,6 +90,7 @@ Alternatively select “Deploy from a branch”, `main`, `/ (root)` in Pages set
 - `js/animations.js`: original scene illustrations, animations, fireworks.
 - `js/media.js`: local recordings, CC0 effects, Web Audio fallback tones, caching, volume, and cancellable sound playback.
 - `css/main.css`: responsive interface, scene styling, reduced-motion overrides.
+- `js/family.js`, `js/family-script.js`, `css/family.css`: the family group chat (engine, copy, styling).
 - `data/media-manifest.json`: structured media research and unresolved rights.
 
 Review a new command’s phonetic validity first: “git” must contribute to the word or expression. Add its registry entry, animation case, CSS, completion text, and manifest record. Use the supplied `later` callback for **every animation timer** so switching commands cancels pending work. Any new sound or media must stop through `Sound.stop()`. Keep user input in `textContent`. Never execute input, invoke Git, or use `eval`.
